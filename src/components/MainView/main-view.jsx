@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { MovieCard } from "../MovieCard/movie-card";
 import { MovieView } from "../MovieView/movie-view";
+import { Sample } from "../sample";
 
 export const MainView = () => {
   const [movies, setMovie] = useState([
@@ -87,6 +88,7 @@ export const MainView = () => {
           </>
         );
       })}
+      <Sample name="Nirlep" />
     </div>
   );
 };

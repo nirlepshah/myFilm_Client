@@ -3,6 +3,7 @@
 import { createRoot } from "react-dom/client";
 
 import { MainView } from './components/MainView/main-view';
+import { Sample } from "./components/sample";
 import MyFlixApplication from "./MyFlixApplication";
 
 
@@ -24,5 +25,6 @@ const root = createRoot(container);
 root.render(
   <>
     <App />
+
   </>
 );
