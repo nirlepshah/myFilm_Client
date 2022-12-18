@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export const BookCard = ({ book, onBookClick }) => {
   return (
@@ -10,4 +11,11 @@ export const BookCard = ({ book, onBookClick }) => {
       {book.title}
     </div>
   );
+};
+
+BookCard.PropTypes = {
+  book: PropTypes.shape({
+    title: PropTypes.string,
+  }).isRequired,
+  onBookClick: PropTypes.func.isRequired,
 };

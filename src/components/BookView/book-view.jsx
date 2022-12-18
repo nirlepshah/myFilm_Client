@@ -1,5 +1,5 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 export const BookView = ({ book, onBackButton }) => {
   return (
     <div>
@@ -23,4 +23,12 @@ export const BookView = ({ book, onBackButton }) => {
       </button>
     </div>
   );
+};
+BookView.PropTypes = {
+  book: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    author: PropTypes.string,
+  }).isRequired,
+  onBackButton: PropTypes.func.isRequired,
 };
