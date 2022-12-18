@@ -1,72 +1,87 @@
 import React from "react";
 import { useState } from "react";
-import { BookCard } from "../book-card/book-card";
-import { BookView } from "../BookView/book-view";
+import { MovieCard } from "../MovieCard/movie-card";
+import { MovieView } from "../MovieView/movie-view";
 
 export const MainView = () => {
-  const [books, setBooks] = useState([
+  const [movies, setMovie] = useState([
     {
       id: 1,
-      title: "Eloquent JavaScript",
+      title: "The Shawshank Redemption",
       image:
         "https://images-na.ssl-images-amazon.com/images/I/51InjRPaF7L._SX377_BO1,204,203,200_.jpg",
-      author: "Marijn Haverbeke",
+      director: "Frank Darabont",
+      description:
+        "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+      genre: "Drama",
     },
     {
       id: 2,
-      title: "Mastering JavaScript Functional Programming",
+      title: "The Godfather",
       image:
-        "https://images-na.ssl-images-amazon.com/images/I/51WAikRq37L._SX218_BO1,204,203,200_QL40_FMwebp_.jpg",
-      author: "Federico Kereki",
+        "https://images-na.ssl-images-amazon.com/images/I/51InjRPaF7L._SX377_BO1,204,203,200_.jpg",
+      director: "Francis Ford Coppola",
+      description:
+        "The aging patriarch of an organized crime dynasty in postwar New York City transfers control of his clandestine empire to his reluctant youngest son.",
+      genre: "Crime",
     },
     {
       id: 3,
-      title: "JavaScript: The Good Parts",
+      title: "The Dark Knight",
       image:
-        "https://images-na.ssl-images-amazon.com/images/I/5131OWtQRaL._SX381_BO1,204,203,200_.jpg",
-      author: "Douglas Crockford",
+        "https://images-na.ssl-images-amazon.com/images/I/51InjRPaF7L._SX377_BO1,204,203,200_.jpg",
+      director: "Christopher Nolan",
+      description:
+        "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+      genre: "Action",
     },
     {
       id: 4,
-      title: "JavaScript: The Definitive Guide",
+      title: "12 Angry Men",
       image:
-        "https://images-na.ssl-images-amazon.com/images/I/51HbNW6RzhL._SX218_BO1,204,203,200_QL40_FMwebp_.jpg",
-      author: "David Flanagan",
+        "https://images-na.ssl-images-amazon.com/images/I/51InjRPaF7L._SX377_BO1,204,203,200_.jpg",
+      director: "Sidney Lumet",
+      description:
+        "The jury in a New York City murder trial is frustrated by a single member whose skeptical caution forces them to more carefully consider the evidence before jumping to a hasty verdict",
+      genre: "Drama",
     },
     {
       id: 5,
-      title: "The Road to React",
+      title: "Schindler's List",
       image:
-        "https://images-na.ssl-images-amazon.com/images/I/41MBLi5a4jL._SX384_BO1,204,203,200_.jpg",
-      author: "Robin Wieruch",
+        "https://images-na.ssl-images-amazon.com/images/I/51InjRPaF7L._SX377_BO1,204,203,200_.jpg",
+      director: "Steven Spielberg",
+      description:
+        "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.",
+      genre: "Biography",
     },
   ]);
 
-  if (books.length === 0) {
+  if (movies.length === 0) {
     return <div>The list is empty</div>;
   }
-  const [selectedBook, setSelectedBook] = useState(null);
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
-  if (selectedBook) {
+  if (selectedMovie) {
     return (
-      <BookView
-        book={selectedBook}
+      <MovieView
+        movie={selectedMovie}
         onBackButton={() => {
-          setSelectedBook(null);
+          setSelectedMovie(null);
         }}
       />
     );
   }
   return (
     <div>
-      {books.map((book) => {
+      {movies.map((movie) => {
         return (
           <>
-            <BookCard
-              key={book.id}
-              book={book}
-              onBookClick={(newBook) => {
-                setSelectedBook(newBook);
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              onMovieClick={(newMovie) => {
+                setSelectedMovie(newMovie);
               }}
             />
           </>

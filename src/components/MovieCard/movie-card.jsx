@@ -1,13 +1,13 @@
 import React from "react";
 
-export const BookCard = ({ book, onBookClick }) => {
+export const MovieCard = ({ movie, onMovieClick }) => {
   return (
     <div
       onClick={() => {
-        onBookClick(book);
+        onMovieClick(movie);
       }}
     >
-      {book.title}
+      {movie.title}
     </div>
   );
 };
