@@ -59,7 +59,7 @@ export const MainView = () => {
   // ]);
 
   const [movies, setMovie] = useState([]);
-
+  const [user, setUser] = useState(null);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
