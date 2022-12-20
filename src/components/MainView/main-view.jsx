@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { BookCard } from "../book-card/book-card";
 import { BookView } from "../BookView/book-view";
+import { LoginView } from "../login-view/login-view";
 
 export const MainView = () => {
   // const [books, setBooks] = useState([
@@ -44,7 +45,7 @@ export const MainView = () => {
   // ]);
 
   const [books, setBooks] = useState([]);
-
+  const [user, setUser] = useState(null);
   const [selectedBook, setSelectedBook] = useState(null);
 
   useEffect(() => {
@@ -71,6 +72,16 @@ export const MainView = () => {
     fetchData();
   }, []);
 
+  if (!user) {
+    return (
+      <LoginView
+        onLoggedIn={(user) => {
+          setUser(user);
+        }}
+      />
+    );
+  }
+
   if (selectedBook) {
     return (
       <BookView
@@ -81,11 +92,30 @@ export const MainView = () => {
       />
     );
   }
+
   if (books.length === 0) {
-    return <div>The list is empty</div>;
+    return (
+      <>
+        <button
+          onClick={() => {
+            setUser(null);
+          }}
+        >
+          LogOut
+        </button>
+        <div>The list is empty</div>);
+      </>
+    );
   }
   return (
     <div>
+      <button
+        onClick={() => {
+          setUser(null);
+        }}
+      >
+        LogOut
+      </button>
       {books.map((book) => {
         return (
           <>
