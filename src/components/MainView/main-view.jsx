@@ -3,7 +3,7 @@ import { useState } from "react";
 import { MovieCard } from "../MovieCard/movie-card";
 import { MovieView } from "../MovieView/movie-view";
 import { Sample } from "../sample";
-
+import { LoginView } from "../login-view/login-view";
 export const MainView = () => {
   // const [movies, setMovie] = useState([
   //   {
@@ -58,12 +58,22 @@ export const MainView = () => {
   //   },
   // ]);
 
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const storedToken = localStorage.getItem("token");
   const [movies, setMovie] = useState([]);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(storedUser ? storedUser : null);
+  const [token, setToken] = useState(storedToken ? storedToken : null);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
+    if (!token) return;
+
     const url = "https://myfilm-api.onrender.com/movies";
+    const settings = {
+      header: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
 
     const fetchMovie = async () => {
       try {
@@ -86,12 +96,31 @@ export const MainView = () => {
       }
     };
     fetchMovie();
-  }, []);
+  }, [token]);
 
   if (movies.length === 0) {
     setTimeout(() => {
       return <div>The list is empty</div>;
     }, 2000);
+    <button
+      onClick={() => {
+        setUser(null);
+        setToken(null);
+        localStorage.clear();
+      }}
+    >
+      LogOut
+    </button>;
+  }
+  if (!user) {
+    return (
+      <LoginView
+        onLoggedIn={(user, token) => {
+          setUser(user);
+          setToken(token);
+        }}
+      />
+    );
   }
   if (selectedMovie) {
     return (
@@ -119,6 +148,19 @@ export const MainView = () => {
           </>
         );
       })}
+
+      <br />
+      <br />
+
+      <button
+        onClick={() => {
+          setUser(null);
+          setToken(null);
+          localStorage.clear();
+        }}
+      >
+        LogOut
+      </button>
     </div>
   );
 };
