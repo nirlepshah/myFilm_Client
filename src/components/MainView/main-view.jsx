@@ -4,6 +4,8 @@ import { MovieCard } from "../MovieCard/movie-card";
 import { MovieView } from "../MovieView/movie-view";
 import { Sample } from "../sample";
 import { LoginView } from "../login-view/login-view";
+import { SignUpView } from "../signup-view/signup-view";
+
 export const MainView = () => {
   // const [movies, setMovie] = useState([
   //   {
@@ -140,12 +142,22 @@ export const MainView = () => {
   }
   if (!user) {
     return (
-      <LoginView
-        onLoggedIn={(user, token) => {
-          setUser(user);
-          setToken(token);
-        }}
-      />
+      <>
+        <h2>LogIn</h2>
+        <LoginView
+          onLoggedIn={(user, token) => {
+            setUser(user);
+            setToken(token);
+          }}
+        />
+        <br />
+        <br />
+        OR
+        <br />
+        <br />
+        <h2>SignUp</h2>
+        <SignUpView />
+      </>
     );
   }
   if (selectedMovie) {

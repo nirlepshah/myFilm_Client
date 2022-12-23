@@ -18,7 +18,9 @@ export const LoginView = ({ onLoggedIn }) => {
       },
       body: JSON.stringify(data),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        return response.json();
+      })
       .then((data) => {
         if (data.user) {
           localStorage.setItem("user", JSON.stringify(data.user));
@@ -44,8 +46,11 @@ export const LoginView = ({ onLoggedIn }) => {
             onChange={(e) => {
               setUsername(e.target.value);
             }}
+            placeholder="Enter Username"
           />
         </label>
+        <br />
+        <br />
         <label>
           Password:
           <input
@@ -54,8 +59,11 @@ export const LoginView = ({ onLoggedIn }) => {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
+            placeholder="Enter Password"
           />
         </label>
+        <br />
+        <br />
         <button type="submit">Submit</button>
       </form>
     </>
