@@ -58,29 +58,31 @@ export const MainView = () => {
   //   },
   // ]);
 
-  const storedUser = JSON.parse(localStorage.getItem("user"));
-  const storedToken = localStorage.getItem("token");
+  let storedUser = JSON.parse(localStorage.getItem("user"));
+  let storedToken = localStorage.getItem("token");
   const [movies, setMovie] = useState([]);
   const [user, setUser] = useState(storedUser ? storedUser : null);
-  const [token, setToken] = useState(storedToken ? storedToken : null);
+  let [token, setToken] = useState(storedToken ? storedToken : null);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
     if (!token) return;
 
     const url = "https://myfilm-api.onrender.com/movies";
-    const settings = {
-      header: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
+    // const settings = {
+    //   header: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // };
 
-    const fetchMovie = async () => {
-      try {
-        const response = await fetch(url);
-        const json = await response.json();
-        console.log(json);
-        const movieFromApi = json.map((movie) => {
+    fetch("https://myfilm-api.onrender.com/movies", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((movies) => {
+        const names = movies.map((movie) => {
           return {
             id: movie._id,
             title: movie.Title,
@@ -90,12 +92,36 @@ export const MainView = () => {
             description: movie.Description,
           };
         });
-        setMovie(movieFromApi);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchMovie();
+        setMovie(names);
+      })
+
+      .catch((e) => {
+        console.log(e);
+      });
+
+    // const fetchMovie = async () => {
+    //   try {
+    //     const response = await fetch(url, {
+    //       headers: { Authorization: `Bearer ${token}` },
+    //     });
+    //     const json = await response.json();
+    //     console.log(storedToken);
+    //     const movieFromApi = json.map((movie) => {
+    //       return {
+    //         id: movie._id,
+    //         title: movie.Title,
+    //         image: movie.ImagePath,
+    //         director: movie.Director.Name,
+    //         genre: movie.Genre.Name,
+    //         description: movie.Description,
+    //       };
+    //     });
+    //     setMovie(movieFromApi);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // };
+    // fetchMovie();
   }, [token]);
 
   if (movies.length === 0) {

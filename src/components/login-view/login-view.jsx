@@ -10,7 +10,6 @@ export const LoginView = ({ onLoggedIn }) => {
       Username: username,
       Password: password,
     };
-    console.log(data);
 
     fetch("https://myfilm-api.onrender.com/login", {
       method: "POST",
@@ -21,11 +20,10 @@ export const LoginView = ({ onLoggedIn }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Login response: ", data);
         if (data.user) {
-          // localStorage.setItem("user", JSON.stringify(data.user));
-          // localStorage.setItem("token", data.token);
-
+          localStorage.setItem("user", JSON.stringify(data.user));
+          localStorage.setItem("token", data.token);
+          console.log(data.token);
           onLoggedIn(data.user, data.token);
         } else {
           alert("No such user");
