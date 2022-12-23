@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { BookCard } from "../book-card/book-card";
 import { BookView } from "../BookView/book-view";
 import { LoginView } from "../login-view/login-view";
+import { SingUpView } from "../SignUpView/signup-view";
 
 export const MainView = () => {
   // const [books, setBooks] = useState([
@@ -74,11 +75,15 @@ export const MainView = () => {
 
   if (!user) {
     return (
-      <LoginView
-        onLoggedIn={(user) => {
-          setUser(user);
-        }}
-      />
+      <>
+        <LoginView
+          onLoggedIn={(user) => {
+            setUser(user);
+          }}
+        />
+        Or
+        <SingUpView />
+      </>
     );
   }
 
