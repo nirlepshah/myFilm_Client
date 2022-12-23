@@ -27,12 +27,12 @@ export const SignUpView = () => {
     })
       .then((response) => {
         console.log(response);
-        if (response) {
-          console.log(response);
+        console.log(response.status);
+        if (response.status === 500) {
           alert("SignUp Successful");
           window.location.reload();
         } else {
-          alert("SignUp Failed");
+          alert("Username already exists or SignUp Failed");
         }
       })
       .catch((error) => {
@@ -71,7 +71,6 @@ export const SignUpView = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
             placeholder="Enter Email"
           />
         </label>
