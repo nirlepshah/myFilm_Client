@@ -5,7 +5,7 @@ import { createRoot } from "react-dom/client";
 import { MainView } from './components/MainView/main-view';
 import { Sample } from "./components/sample";
 import MyFlixApplication from "./MyFlixApplication";
-
+import "bootstrap/dist/css/bootstrap.min.css";
 
 // const MyFlixApplication = () => {
 //   return (
