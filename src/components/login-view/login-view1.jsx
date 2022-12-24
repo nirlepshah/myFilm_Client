@@ -72,8 +72,7 @@
 //};
 import React, { useState } from "react";
 
-import { Form, Button } from "react-bootstrap";
-export const LoginView = ({ onLoggedIn }) => {
+export const LoginView1 = ({ onLoggedIn }) => {
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
 
@@ -107,10 +106,10 @@ export const LoginView = ({ onLoggedIn }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="formUsername">
-        <Form.Label>Username:</Form.Label>
-        <Form.Control
+    <form onSubmit={handleSubmit}>
+      <label>
+        Username:
+        <input
           type="text"
           value={username}
           onChange={(e) => {
@@ -120,12 +119,12 @@ export const LoginView = ({ onLoggedIn }) => {
           minlength="3"
           maxlength="20"
         />
-      </Form.Group>
+      </label>
       <br />
       <br />
-      <Form.Group controlId="formPassword">
-        <Form.Label>Password:</Form.Label>
-        <Form.Control
+      <label>
+        Password:
+        <input
           type="text"
           value={password}
           onChange={(e) => {
@@ -135,10 +134,10 @@ export const LoginView = ({ onLoggedIn }) => {
           minlength="3"
           maxlength="20"
         />
-      </Form.Group>
+      </label>
       <br />
       <br />
-      <Button type="submit">Submit</Button>
-    </Form>
+      <button type="submit">Submit</button>
+    </form>
   );
 };
