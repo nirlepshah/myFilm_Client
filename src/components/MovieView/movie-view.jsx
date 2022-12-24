@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Button } from "react-bootstrap";
+import "./movie-view.scss";
 export const MovieView = ({ movie, onBackButton }) => {
   return (
     <div>
@@ -33,6 +34,7 @@ export const MovieView = ({ movie, onBackButton }) => {
         onClick={() => {
           onBackButton();
         }}
+        className="back-button"
       >
         Go Back
       </button>

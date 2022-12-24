@@ -2,11 +2,12 @@
 // import ReactDOM from "react-dom";
 import { createRoot } from "react-dom/client";
 
-import { MainView } from './components/MainView/main-view';
+import { MainView } from "./components/MainView/main-view";
 import { Sample } from "./components/sample";
 import MyFlixApplication from "./MyFlixApplication";
-import "bootstrap/dist/css/bootstrap.min.css";
 
+import { Container } from "react-bootstrap";
+// import "bootstrap/dist/css/bootstrap.min.css";
 // const MyFlixApplication = () => {
 //   return (
 //     <div className="my-flix">
@@ -16,7 +17,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // };
 
 const App = () => {
-  return <MainView />
+  return (
+    <Container >
+      <MainView />
+    </Container>
+  )
+
 }
 const container = document.getElementById("root");
 const root = createRoot(container);
