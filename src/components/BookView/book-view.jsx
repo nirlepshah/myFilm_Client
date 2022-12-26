@@ -1,8 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./book-view.scss";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 import { Button, Card } from "react-bootstrap";
-export const BookView = ({ book, onBackButton }) => {
+export const BookView = ({ books }) => {
+  const { bookId } = useParams();
+  const book = books.find((b) => b.id === bookId);
   return (
     <Card>
       <div>
@@ -17,15 +21,9 @@ export const BookView = ({ book, onBackButton }) => {
         <span>{book.author}</span>
         <br />
         <br />
-        <button
-          className="back-button"
-          onClick={() => {
-            onBackButton();
-          }}
-          style={{ cursor: "pointer" }}
-        >
-          Go Back
-        </button>
+        <Link to={`/`}>
+          <button className="back-button">Back</button>
+        </Link>
       </div>
     </Card>
   );
@@ -34,9 +32,8 @@ BookView.PropTypes = {
   book: PropTypes.shape({
     title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-    author: PropTypes.string,
+    author: PropTypes.string.isRequired,
   }).isRequired,
-  onBackButton: PropTypes.func.isRequired,
 };
 
 //username: 167OLdP5BUfLZGxP
