@@ -1,44 +1,46 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Button } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router";
 import "./movie-view.scss";
-export const MovieView = ({ movie, onBackButton }) => {
+export const MovieView = ({ movies }) => {
+  const { movieId } = useParams();
+  const movie = movies.find((m) => m.id === movieId);
+  console.log(movie);
   return (
-    <div>
+    <Card>
       <div>
-        <img src={movie.image} alt="image" />
+        <div>
+          <img src={movie.image} alt="image" />
+        </div>
+        <div>
+          <span>Title</span>
+          <span>: </span>
+          <span>{movie.title}</span>
+        </div>
+        <div>
+          <span>Description</span>
+          <span>: </span>
+          <span>{movie.description}</span>
+        </div>
+        <div>
+          <span>Director</span>
+          <span>: </span>
+          <span>{movie.director}</span>
+        </div>
+        <div>
+          <span>Genre</span>
+          <span>: </span>
+          <span>{movie.genre}</span>
+        </div>
+        <br />
+        <br />
+        <Link to={`/`}>
+          <button className="back-button">Back</button>
+        </Link>
       </div>
-      <div>
-        <span>Title</span>
-        <span>: </span>
-        <span>{movie.title}</span>
-      </div>
-      <div>
-        <span>Description</span>
-        <span>: </span>
-        <span>{movie.description}</span>
-      </div>
-      <div>
-        <span>Director</span>
-        <span>: </span>
-        <span>{movie.director}</span>
-      </div>
-      <div>
-        <span>Genre</span>
-        <span>: </span>
-        <span>{movie.genre}</span>
-      </div>
-      <br />
-      <br />
-      <button
-        onClick={() => {
-          onBackButton();
-        }}
-        className="back-button"
-      >
-        Go Back
-      </button>
-    </div>
+    </Card>
   );
 };
 
@@ -49,5 +51,4 @@ MovieView.PropTypes = {
     genre: PropTypes.string.isRequired,
     director: PropTypes.string.isRequired,
   }).isRequired,
-  onBackButton: PropTypes.func.isRequired,
 };
