@@ -127,7 +127,7 @@ export const MainView = () => {
             }
           />
           <Route
-            path="/usersData"
+            path="/users"
             element={
               <>
                 {!user ? (
