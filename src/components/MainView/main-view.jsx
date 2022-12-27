@@ -8,6 +8,7 @@ import { SignUpView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { Row, Button, Col } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { ProfileView } from "../profile-view/profile-view";
 export const MainView = () => {
   let storedUser = JSON.parse(localStorage.getItem("user"));
   let storedToken = localStorage.getItem("token");
@@ -52,6 +53,8 @@ export const MainView = () => {
         user={user}
         onLoggedOut={() => {
           setUser(null);
+          setToken(null);
+          localStorage.clear();
         }}
       />
       <Row className="justify-content-md-center">
@@ -118,6 +121,20 @@ export const MainView = () => {
                         <MovieCard movie={movie} />
                       </Col>
                     ))}
+                  </>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/usersData"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : (
+                  <>
+                    <ProfileView />
                   </>
                 )}
               </>

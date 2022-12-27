@@ -9,7 +9,7 @@ export const MovieView = ({ movies }) => {
   const movie = movies.find((m) => m.id === movieId);
   console.log(movie);
   return (
-    <Card>
+    <Card className="mt-5">
       <div>
         <div>
           <img src={movie.image} alt="image" />

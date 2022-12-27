@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import { LoginView } from "../login-view/login-view";
 
 export const SignUpView = () => {
   const [username, setUsername] = useState("");
@@ -29,8 +30,8 @@ export const SignUpView = () => {
         console.log(response);
         console.log(response.status);
         if (response.status === 500) {
-          alert("SignUp Successful");
-          window.location.reload();
+          alert("SignUp Successful, please login");
+          window.open("/", "_self");
         } else {
           alert("Username already exists or SignUp Failed");
         }
