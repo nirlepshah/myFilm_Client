@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Card, Form, Button, Container, Col } from "react-bootstrap";
 
 import { MovieCard } from "../MovieCard/movie-card";
+// import { MovieCard } from "../MovieCard/movie-card";
+// import { MovieView } from "../MovieView/movie-view";
 
-export const ProfileView = ({ movies, onBackClick }) => {
+export const ProfileView1 = ({ movies, onBackClick }) => {
   let storedUser = JSON.parse(localStorage.getItem("user"));
   let storedToken = localStorage.getItem("token");
   const [username, setUsername] = useState("");
@@ -12,23 +14,25 @@ export const ProfileView = ({ movies, onBackClick }) => {
   const [birthday, setBirthday] = useState("");
   const [movieList, setMovieList] = useState([]);
 
-  useEffect(() => {
-    if (!storedToken) return;
+  // console.log(storedUser);
+  //   useEffect(() => {
+  //     if (!token) return;
 
-    fetch(`https://myfilm-api.onrender.com/users/${storedUser.Username}`, {
-      headers: { Authorization: `Bearer ${storedToken}` },
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-        setMovieList(data.FavoriteMovies);
-        console.log(movieList);
-      });
-  }, [movieList]);
+  //     fetch("https://myfilm-api.onrender.com/users", {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     })
+  //       .then((response) => {
+  //         return response.json();
+  //       })
+  //       .then((data) => {
+  //         console.log(data);
+  //         const userData = data.find((u) => storedUser.Username === u.Username);
+  //         console.log(storedUser);
+  //         console.log(userData);
+  //         setUserData(userData);
+  //       });
+  //   }, [token]);
 
-  let favMovies = movies.filter((m) => movieList.includes(m.id));
   const handleUpdate = (e) => {
     e.preventDefault();
 
@@ -127,14 +131,14 @@ export const ProfileView = ({ movies, onBackClick }) => {
                 : `Birthday: You did not provide your Birthday.`}
             </Card.Text>
             <Card.Text>
-              {movieList.length === 0
+              {storedUser.FavoriteMovies.length === 0
                 ? `Favorite Movies: You don't have any Favorite Movies.`
-                : `Favorite Movies: ${movieList}`}
+                : `Favorite Movies: ${storedUser.FavoriteMovies}`}
             </Card.Text>
 
             <div>
               <h2>Favorite movies</h2>
-              {favMovies.map((m) => {
+              {movies.map((m) => {
                 return (
                   <>
                     <Col>
@@ -163,6 +167,7 @@ export const ProfileView = ({ movies, onBackClick }) => {
                   required
                   minlength="3"
                   placeholder="Enter Username"
+                  value={username}
                   onChange={(e) => setUsername(e.target.value)}
                 />
               </Form.Group>
@@ -202,7 +207,7 @@ export const ProfileView = ({ movies, onBackClick }) => {
               <Button type="submit">Submit</Button>
             </Form>
             <br />
-
+            <br />
             <Card>
               <h2>Click the button below to Delete Your Account </h2>
               <Card.Body>

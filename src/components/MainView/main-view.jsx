@@ -17,10 +17,12 @@ export const MainView = () => {
   let [token, setToken] = useState(storedToken ? storedToken : null);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
+  // let favMovies = movies.filter((m) =>
+  //   storedUser.FavoriteMovies.includes(m.id)
+  // );
+
   useEffect(() => {
     if (!token) return;
-
-    const url = "https://myfilm-api.onrender.com/movies";
 
     fetch("https://myfilm-api.onrender.com/movies", {
       headers: { Authorization: `Bearer ${token}` },
@@ -41,7 +43,6 @@ export const MainView = () => {
         });
         setMovie(names);
       })
-
       .catch((e) => {
         console.log(e);
       });
@@ -134,7 +135,10 @@ export const MainView = () => {
                   <Navigate to="/login" replace />
                 ) : (
                   <>
-                    <ProfileView />
+                    <ProfileView
+                      movies={movies}
+                      onBackClick={() => history.back()}
+                    />
                   </>
                 )}
               </>
