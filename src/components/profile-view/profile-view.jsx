@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Form, Button, Container, Col } from "react-bootstrap";
 
 import { MovieCard } from "../MovieCard/movie-card";
-
+import "./profile-view.scss";
 export const ProfileView = ({ movies, onBackClick }) => {
   let storedUser = JSON.parse(localStorage.getItem("user"));
   let storedToken = localStorage.getItem("token");
@@ -77,7 +77,6 @@ export const ProfileView = ({ movies, onBackClick }) => {
       .then((res) => {
         console.log(res);
         alert("Movie was removed");
-        console.log(movies);
       })
       .catch((e) => {
         console.log(e);
@@ -104,18 +103,13 @@ export const ProfileView = ({ movies, onBackClick }) => {
     }
   };
 
-  // console.log(movies);
-  // console.log(storedUser.FavoriteMovies);
-
-  // let favMovies = movies.filter((m) =>
-  //   storedUser.FavoriteMovies.includes(m.id)
-  // );
-  // setMovieList(favMovies);
-  // console.log(favMovies);
   return (
     <>
-      <Container>
-        <Card className="mt-5">
+      <Container className="profile-container" border="dark">
+        <Card.Header className="text-center" as="h2">
+          Profile
+        </Card.Header>
+        <Card className="mt-3">
           <Card.Body>
             <Card.Title>User Details</Card.Title>
             <Card.Text>Username: {storedUser.Username}</Card.Text>
@@ -131,30 +125,39 @@ export const ProfileView = ({ movies, onBackClick }) => {
                 ? `Favorite Movies: You don't have any Favorite Movies.`
                 : `Favorite Movies: ${movieList}`}
             </Card.Text>
+            {favMovies.length > 0 ? (
+              <div>
+                <h2>
+                  <u> Favorite movies</u>
+                </h2>
 
-            <div>
-              <h2>Favorite movies</h2>
-              {favMovies.map((m) => {
-                return (
-                  <>
-                    <Col>
-                      <div>Movie name: {m.title}</div>
-                      <div>Movie Description: {m.description}</div> <br />
-                      <button
-                        onClick={() => {
-                          removeFavMovie(m.id);
-                        }}
-                      >
-                        Remove Favorite Movie
-                      </button>
-                      <br />
-                      <br />
-                    </Col>
-                  </>
-                );
-              })}
-            </div>
-            <h2>Please enter information below to update the profile </h2>
+                {favMovies.map((m) => {
+                  return (
+                    <>
+                      <Col>
+                        <div>Movie name: {m.title}</div>
+                        <div>Movie Description: {m.description}</div> <br />
+                        <button
+                          onClick={() => {
+                            removeFavMovie(m.id);
+                          }}
+                        >
+                          Remove Favorite Movie
+                        </button>
+                        <br />
+                        <hr class="solid"></hr>
+                        <br />
+                      </Col>
+                    </>
+                  );
+                })}
+              </div>
+            ) : (
+              <>
+                <h3>You don't have favorite any movies! Add some movies</h3>
+              </>
+            )}
+            <h2>Please enter information below to update your profile </h2>
             <Form onSubmit={handleUpdate}>
               <Form.Group controlId="formUsername">
                 <Form.Label>Username:</Form.Label>

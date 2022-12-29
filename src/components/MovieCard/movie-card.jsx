@@ -3,6 +3,29 @@ import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 export const MovieCard = ({ movie }) => {
+  let storedUser = JSON.parse(localStorage.getItem("user"));
+  let storedToken = localStorage.getItem("token");
+
+  const AddFavMovie = (id) => {
+    fetch(
+      `https://myfilm-api.onrender.com/users/${storedUser.Username}/movies/${id}`,
+      {
+        method: "PUT",
+
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${storedToken}`,
+        },
+      }
+    )
+      .then((res) => {
+        console.log(res);
+        alert("Movie was Added");
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
   return (
     <Card className="h-100">
       <Card.Img variant="top" src={movie.image} />
@@ -13,7 +36,13 @@ export const MovieCard = ({ movie }) => {
           <Button variant="link">Open</Button>
         </Link>
         <br />
-        <button>Add Movie to Favorite</button>
+        <button
+          onClick={() => {
+            AddFavMovie(movie.id);
+          }}
+        >
+          Add Movie to Favorite
+        </button>
       </Card.Body>
     </Card>
   );
