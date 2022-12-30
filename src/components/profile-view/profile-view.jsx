@@ -114,7 +114,6 @@ export const ProfileView = ({ movies, onBackClick }) => {
             <Card.Title>User Details</Card.Title>
             <Card.Text>Username: {storedUser.Username}</Card.Text>
             <Card.Text>Email: {storedUser.Email}</Card.Text>
-
             <Card.Text>
               {storedUser.Birthday
                 ? `Birthday: ${storedUser.Birthday}`
@@ -125,7 +124,6 @@ export const ProfileView = ({ movies, onBackClick }) => {
                 ? `Favorite Movies: You don't have any Favorite Movies.`
                 : `Favorite Movies: ${movieList}`}
             </Card.Text>
-
             {favMovies.length > 0 ? (
               <div>
                 <h2>
@@ -162,9 +160,11 @@ export const ProfileView = ({ movies, onBackClick }) => {
               </div>
             ) : (
               <>
-                <h3>You don't have favorite any movies! Add some movies</h3>
+                <b>You don't have favorite any movies! Add some movies</b>
               </>
             )}
+            <br />
+            <br />
             <h2>Please enter information below to update your profile </h2>
             <Form onSubmit={handleUpdate}>
               <Form.Group controlId="formUsername">
@@ -213,7 +213,6 @@ export const ProfileView = ({ movies, onBackClick }) => {
               <Button type="submit">Submit</Button>
             </Form>
             <br />
-
             <Card>
               <h2>Click the button below to Delete Your Account </h2>
               <Card.Body>
