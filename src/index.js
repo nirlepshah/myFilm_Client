@@ -1,5 +1,6 @@
-// import React from "react";
-// import ReactDOM from "react-dom";
+import React from "react";
+import ReactDOM from "react-dom";
+import 'regenerator-runtime/runtime'
 import { createRoot } from "react-dom/client";
 
 import { MainView } from "./components/MainView/main-view";
