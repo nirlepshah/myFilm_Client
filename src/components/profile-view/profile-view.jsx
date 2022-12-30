@@ -125,6 +125,7 @@ export const ProfileView = ({ movies, onBackClick }) => {
                 ? `Favorite Movies: You don't have any Favorite Movies.`
                 : `Favorite Movies: ${movieList}`}
             </Card.Text>
+
             {favMovies.length > 0 ? (
               <div>
                 <h2>
@@ -135,8 +136,15 @@ export const ProfileView = ({ movies, onBackClick }) => {
                   return (
                     <>
                       <Col>
-                        <div>Movie name: {m.title}</div>
-                        <div>Movie Description: {m.description}</div> <br />
+                        <div>
+                          {" "}
+                          <b> Movie name: </b> {m.title}
+                        </div>
+                        <div>
+                          {" "}
+                          <b> Movie Description: </b> {m.description}
+                        </div>{" "}
+                        <br />
                         <button
                           onClick={() => {
                             removeFavMovie(m.id);
