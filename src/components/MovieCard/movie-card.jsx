@@ -36,6 +36,7 @@ export const MovieCard = ({ movie }) => {
           <Button variant="link">Open</Button>
         </Link>
         <br />
+
         <button
           onClick={() => {
             AddFavMovie(movie.id);
