@@ -2,7 +2,7 @@
 
 # Project Description
 
-myFilm is a client-side application built using ReactJS for its existing server-side code. myFilm app is a responsive app that displays a list of movies for registered users and details about a particular. Users can access information on movies, directors, and genres.
+myFilm is a client-side application built using ReactJS for its existing server-side code. myFilm app is a responsive app that displays a list of movies for registered users, details about a particular movie, and user data. Users can access information on movies, directors, genres, and user can add or remove a movie from their favorite list.
 
 # App Features
 
@@ -11,6 +11,8 @@ myFilm is a client-side application built using ReactJS for its existing server-
 ● Returns data (description, genre, director, image) about a single movie to the user <br />
 ● Allows users to log in with a username and password <br />
 ● Allows new users to register (username, password, email, birthday) <br />
+● Returns data about a genre, with a name and description<br />
+● Returns data about a director (name, bio, birth year, death year) <br />
 ● Allows users to update their user info (username, password, email, date of birth) <br />
 ● Allows existing users to deregister <br />
 ● Displays favorite movies <br />
