@@ -18,7 +18,9 @@
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.8.2",
+    "cssnano": "^4.1.11",
     "parcel": "^2.8.2",
+    "postcss": "^8.4.20",
     "sass": "^1.57.1"
   }
 }
