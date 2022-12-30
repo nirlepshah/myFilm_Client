@@ -5,7 +5,7 @@ import { Container, Card } from "react-bootstrap";
 export const DirectorView = ({ movies }) => {
   const { directorName } = useParams();
   const movie = movies.find((m) => (m.director.Name = directorName));
-  console.log(directorName);
+  //   console.log(directorName);
   let date = new Date(movie.director.Birth);
   return (
     <>
