@@ -33,10 +33,17 @@ export const MovieCard = ({ movie }) => {
         <Card.Title>{movie.title}</Card.Title>
         <Card.Text>{movie.description}</Card.Text>
         <Link to={`/movie/${encodeURIComponent(movie.id)}`}>
-          <Button variant="link">Open</Button>
+          <Button variant="link">Movie View</Button>
+        </Link>{" "}
+        <br />
+        <Link to={`/movie/director/${encodeURIComponent(movie.director.Name)}`}>
+          <Button variant="link">Director</Button>
+        </Link>{" "}
+        <br />
+        <Link to={`/movie/genre/${encodeURIComponent(movie.genre.Name)}`}>
+          <Button variant="link">Genre</Button>
         </Link>
         <br />
-
         <button
           onClick={() => {
             AddFavMovie(movie.id);

@@ -9,6 +9,8 @@ import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { Row, Button, Col } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ProfileView } from "../profile-view/profile-view";
+import { DirectorView } from "../director-view/director-view";
+import { GenreView } from "../genre-view/genre-view";
 export const MainView = () => {
   let storedUser = JSON.parse(localStorage.getItem("user"));
   let storedToken = localStorage.getItem("token");
@@ -36,8 +38,8 @@ export const MainView = () => {
             id: movie._id,
             title: movie.Title,
             image: movie.ImagePath,
-            director: movie.Director.Name,
-            genre: movie.Genre.Name,
+            director: movie.Director,
+            genre: movie.Genre,
             description: movie.Description,
           };
         });
@@ -104,6 +106,38 @@ export const MainView = () => {
                 ) : (
                   <Col md={8}>
                     <MovieView movies={movies} />
+                  </Col>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/movie/director/:directorName"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
+                  <Col>The list is empty!</Col>
+                ) : (
+                  <Col md={8}>
+                    <DirectorView movies={movies} />
+                  </Col>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/movie/genre/:genreName"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
+                  <Col>The list is empty!</Col>
+                ) : (
+                  <Col md={8}>
+                    <GenreView movies={movies} />
                   </Col>
                 )}
               </>

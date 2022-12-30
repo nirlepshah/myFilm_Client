@@ -7,34 +7,45 @@ import "./movie-view.scss";
 export const MovieView = ({ movies }) => {
   const { movieId } = useParams();
   const movie = movies.find((m) => m.id === movieId);
-  console.log(movie);
+  // console.log(movie);
   return (
-    <Card className="mt-5">
+    <Card className="mt-3">
       <div>
         <div>
           <img src={movie.image} alt="image" />
-        </div>
+        </div>{" "}
         <div>
-          <span>Title</span>
-          <span>: </span>
+          <span>
+            {" "}
+            <b>Title: </b>
+          </span>
+
           <span>{movie.title}</span>
-        </div>
-        <div>
-          <span>Description</span>
-          <span>: </span>
-          <span>{movie.description}</span>
-        </div>
-        <div>
-          <span>Director</span>
-          <span>: </span>
-          <span>{movie.director}</span>
-        </div>
-        <div>
-          <span>Genre</span>
-          <span>: </span>
-          <span>{movie.genre}</span>
-        </div>
+        </div>{" "}
         <br />
+        <div>
+          <span>
+            <b>Description: </b>{" "}
+          </span>
+          <span>{movie.description}</span>
+        </div>{" "}
+        <br />
+        <div>
+          <span>
+            {" "}
+            <b>Director: </b>{" "}
+          </span>
+
+          <span>{movie.director.Name}</span>
+        </div>{" "}
+        <br />
+        <div>
+          <span>
+            {" "}
+            <b>Genre: </b>{" "}
+          </span>
+          <span>{movie.genre.Name}</span>
+        </div>
         <br />
         <Link to={`/`}>
           <button className="back-button">Back</button>
