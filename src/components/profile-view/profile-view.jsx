@@ -160,7 +160,7 @@ export const ProfileView = ({ movies, onBackClick }) => {
               </div>
             ) : (
               <>
-                <b>You don't have favorite any movies! Add some movies</b>
+                <b>You don't have any favorite movies! Add some movies</b>
               </>
             )}
             <br />
