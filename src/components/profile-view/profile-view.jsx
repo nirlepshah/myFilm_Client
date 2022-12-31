@@ -102,7 +102,6 @@ export const ProfileView = ({ movies, onBackClick }) => {
         });
     }
   };
-
   return (
     <>
       <Container className="profile-container" border="dark">
@@ -120,16 +119,20 @@ export const ProfileView = ({ movies, onBackClick }) => {
                 : `Birthday: You did not provide your Birthday.`}
             </Card.Text>
             <Card.Text>
+              <h2>
+                <u>Favorite movies:</u>
+              </h2>
+            </Card.Text>
+            {/* <Card.Text>
               {movieList.length === 0
                 ? `Favorite Movies: You don't have any Favorite Movies.`
                 : `Favorite Movies: ${movieList}`}
-            </Card.Text>
+            </Card.Text> */}
             {favMovies.length > 0 ? (
               <div>
-                <h2>
+                {/* <h2>
                   <u> Favorite movies</u>
-                </h2>
-
+                </h2> */}
                 {favMovies.map((m) => {
                   return (
                     <>
@@ -163,6 +166,7 @@ export const ProfileView = ({ movies, onBackClick }) => {
                 <b>You don't have any favorite movies! Add some movies</b>
               </>
             )}
+
             <br />
             <br />
             <h2>Please enter information below to update your profile </h2>
