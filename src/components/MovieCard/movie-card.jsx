@@ -19,7 +19,7 @@ export const MovieCard = ({ movie }) => {
       }
     )
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         alert("Movie was Added");
       })
       .catch((e) => {

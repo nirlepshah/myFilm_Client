@@ -22,9 +22,9 @@ export const ProfileView = ({ movies, onBackClick }) => {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setMovieList(data.FavoriteMovies);
-        console.log(movieList);
+        // console.log(movieList);
       });
   }, [movieList]);
 
@@ -51,7 +51,7 @@ export const ProfileView = ({ movies, onBackClick }) => {
       })
         .then((res) => {
           const updatedData = res.json();
-          console.log(updatedData);
+          // console.log(updatedData);
           alert("Update successful! Please log in with your new credentials");
           localStorage.clear();
           window.open("/", "_self");

@@ -4,7 +4,7 @@ import { Form, Button } from "react-bootstrap";
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
-  console.log(password);
+  // console.log(password);
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
@@ -26,7 +26,7 @@ export const LoginView = ({ onLoggedIn }) => {
         if (data.user) {
           localStorage.setItem("user", JSON.stringify(data.user));
           localStorage.setItem("token", data.token);
-          console.log(data.token);
+          // console.log(data.token);
           onLoggedIn(data.user, data.token);
         } else {
           alert("No such user");
